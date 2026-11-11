@@ -12,6 +12,7 @@ tool-fastutil = "8.5.19" # https://github.com/vigna/fastutil/
 tool-google-guava = "33.7.1-jre" # https://github.com/google/guava
 tool-netty = "4.2.18.Final" # https://github.com/netty/netty
 tool-spotbugs-annotations = "4.7.3" # https://github.com/spotbugs/spotbugs
+tool-checker-qual = "4.3.1" # https://checkerframework.org/
 
 [libraries]
 elytrium-commons-config = { module = "net.elytrium.commons:config", version.ref = "elytrium-commons" }
@@ -30,6 +31,7 @@ tool-google-guava = { module = "com.google.guava:guava", version.ref = "tool-goo
 tool-netty-codec = { module = "io.netty:netty-codec", version.ref = "tool-netty" }
 tool-netty-handler = { module = "io.netty:netty-handler", version.ref = "tool-netty" }
 tool-spotbugs-annotations = { module = "com.github.spotbugs:spotbugs-annotations", version.ref = "tool-spotbugs-annotations" }
+tool-checker-qual = { module = "org.checkerframework:checker-qual", version.ref = "tool-checker-qual" }
 
 [plugins]
 gradle-licenser = { id = "net.minecraftforge.licenser", version.ref = "gradle-licenser" }

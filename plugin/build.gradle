@@ -48,6 +48,8 @@ dependencies() {
   implementation(libs.minecraft.bstats.velocity)
 
   compileOnly(libs.tool.spotbugs.annotations)
+  // Velocity's local distribution does not include nullness annotations.
+  compileOnly(libs.tool.checker.qual)
 }
 
 shadowJar() {
