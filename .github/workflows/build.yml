@@ -26,8 +26,10 @@ jobs:
             plugin/build/minecraft/
             plugin/build/generated/minecraft/mapping/
           key: minecraft-${{ hashFiles('gradle.properties') }}
+      - name: Fetch local Velocity distribution
+        run: curl --fail --location --retry 3 https://raw.githubusercontent.com/QuickFire-Corp/QuickAuth/addon/libs/velocity-4.3.1-45.jar --output velocity-4.3.1-45.jar
       - name: Build LimboAPI
-        run: ./gradlew build
+        run: ./gradlew build -PvelocityLocalJar=velocity-4.3.1-45.jar
       - name: Upload LimboAPI
         uses: actions/upload-artifact@v4.6.2
         with:

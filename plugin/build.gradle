@@ -25,10 +25,20 @@ dependencies() {
   implementation(libs.elytrium.commons.kyori)
 
   implementation(libs.elytrium.fastprepare)
-  compileOnly(libs.minecraft.velocity.api)
-  annotationProcessor(libs.minecraft.velocity.api)
-  compileOnly(libs.minecraft.velocity.proxy) // From Elytrium Repo.
-  compileOnly(libs.minecraft.velocity.native)
+  def velocityLocalJar = project.findProperty("velocityLocalJar")
+  if (velocityLocalJar != null) {
+    def velocityJar = file(velocityLocalJar)
+    if (!velocityJar.isFile()) {
+      throw new GradleException("velocityLocalJar does not point to a file: ${velocityJar}")
+    }
+    compileOnly(files(velocityJar))
+    annotationProcessor(files(velocityJar))
+  } else {
+    compileOnly(libs.minecraft.velocity.api)
+    annotationProcessor(libs.minecraft.velocity.api)
+    compileOnly(libs.minecraft.velocity.proxy) // From Elytrium Repo.
+    compileOnly(libs.minecraft.velocity.native)
+  }
 
   // Needs for some velocity methods.
   compileOnly(libs.tool.netty.codec)
