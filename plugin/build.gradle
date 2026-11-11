@@ -27,7 +27,7 @@ dependencies() {
   implementation(libs.elytrium.fastprepare)
   def velocityLocalJar = project.findProperty("velocityLocalJar")
   if (velocityLocalJar != null) {
-    def velocityJar = file(velocityLocalJar)
+    def velocityJar = rootProject.file(velocityLocalJar)
     if (!velocityJar.isFile()) {
       throw new GradleException("velocityLocalJar does not point to a file: ${velocityJar}")
     }
