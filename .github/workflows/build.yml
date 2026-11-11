@@ -1,6 +1,7 @@
 name: Java CI with Gradle
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -61,10 +62,10 @@ jobs:
           name: Dev-build ${{ steps.git-version.outputs.id }}
           tag: dev-build
       - name: Upload to Modrinth
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' && env.MODRINTH_TOKEN != '' }}
         uses: RubixDev/modrinth-upload@v1.0.0
         with:
-          token: ${{ secrets.MODRINTH_TOKEN }}
+          token: ${{ env.MODRINTH_TOKEN }}
           file_path: plugin/build/libs/${{ steps.find-jar.outputs.jarname }}
           name: Dev-build ${{ steps.git-version.outputs.id }}
           version: ${{ steps.git-version.outputs.id }}
@@ -74,3 +75,5 @@ jobs:
           loaders: velocity
           featured: false
           project_id: TZOteSf2
+        env:
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
