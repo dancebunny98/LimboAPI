@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4.2.2
@@ -75,5 +77,3 @@ jobs:
           loaders: velocity
           featured: false
           project_id: TZOteSf2
-        env:
-          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
